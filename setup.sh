@@ -7,6 +7,8 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 H="${HERMES_HOME:-$HOME/.hermes}"
+# En los workspaces de NaN, Hermes vive en /opt/hermes y no está en el PATH
+HERMES="$(command -v hermes || echo /opt/hermes/.venv/bin/hermes)"
 
 # El portero y la rutina de reuniones, donde Hermes busca los scripts
 mkdir -p "$H/scripts"
@@ -18,17 +20,17 @@ cp soul/SOUL.md "$H/SOUL.md"
 
 # Las horas de las rutinas van en tu zona, y al contestar a un aviso
 # la conversación sigue en su hilo, con el aviso delante
-hermes config set timezone Europe/Madrid
-hermes config set cron.mirror_delivery true
+"$HERMES" config set timezone Europe/Madrid
+"$HERMES" config set cron.mirror_delivery true
 
 # Cada 15 minutos mira si hay algo; el portero decide si el agente se despierta
-hermes cron create "every 15m" "$(cat prompts/proactivo.md)" \
+"$HERMES" cron create "every 15m" "$(cat prompts/proactivo.md)" \
   --name proactivo --script portero.py --skill google-workspace \
   --deliver telegram --continuity
 
 # Cada tarde, el resumen de las reuniones de mañana
-hermes cron create "0 18 * * *" "$(cat prompts/reuniones.md)" \
+"$HERMES" cron create "0 18 * * *" "$(cat prompts/reuniones.md)" \
   --name reuniones --script reuniones.py --skill google-workspace \
   --deliver telegram
 
-hermes cron list
+"$HERMES" cron list

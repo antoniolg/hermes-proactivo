@@ -36,13 +36,21 @@ Cada paso tiene su tag (`git checkout paso-1`).
 
 En [cloud.nan.builders/workspaces](https://cloud.nan.builders/workspaces), crea un workspace y marca Hermes. En su configuración elige el modelo (`deepseek-v4-flash`), pega el token de Telegram y, como alma, el contenido de [`soul/SOUL.md`](soul/SOUL.md).
 
-Escríbele al bot. Como no te conoce, te contesta con un código de emparejamiento. Apruébalo desde la consola del workspace:
+Escríbele al bot y te contestará. Pero ojo: tal como viene en el workspace, Hermes arranca con `GATEWAY_ALLOW_ALL_USERS=true`, así que contesta a cualquiera que encuentre el bot, con una terminal en tu máquina detrás. Antes de darle tu correo, ciérralo a tu usuario. Se hace desde el propio chat:
 
-```bash
-hermes pairing approve telegram <CÓDIGO>
-```
+1. Manda `/whoami`: te contesta con tu ID de Telegram.
+2. Pídeselo: «Haz que solo pueda hablarte yo: añade `TELEGRAM_ALLOWED_USERS=<tu ID>` a `~/.hermes/.env`». Si te pide permiso para tocar el archivo, apruébalo.
+3. Manda `/restart` para que lo cargue. Si en un minuto no vuelve a contestar, para y arranca el workspace desde el panel.
+
+Con una lista de usuarios, el permiso para todos deja de aplicarse y Hermes ignora a los desconocidos. Compruébalo escribiéndole desde otra cuenta: no debería contestar.
 
 Y en el chat con el bot, `/sethome`: ahí llegarán los avisos.
+
+En el workspace, Hermes está en `/opt/hermes` y no en el PATH. Para usar `hermes` en la consola:
+
+```bash
+echo 'export PATH=/opt/hermes/.venv/bin:$PATH' >> ~/.bashrc && source ~/.bashrc
+```
 
 ### 2 · Correo y calendario
 
