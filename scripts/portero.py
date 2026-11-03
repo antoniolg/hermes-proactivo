@@ -186,8 +186,11 @@ def _post(cuerpo: dict) -> dict:
 
 def gapi(*args: str) -> list[dict]:
     """Llama a la skill google-workspace de Hermes y devuelve su JSON."""
+    # Si el venv de Hermes es de solo lectura (en NaN lo es), la skill instala Google en venv-google
+    python = HERMES / "venv-google/bin/python"
     salida = subprocess.run(
-        [sys.executable, str(GAPI), *args], capture_output=True, text=True, check=True, timeout=120
+        [str(python) if python.exists() else sys.executable, str(GAPI), *args],
+        capture_output=True, text=True, check=True, timeout=120,
     )
     return json.loads(salida.stdout or "[]")
 
