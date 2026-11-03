@@ -78,7 +78,13 @@ El 3 de noviembre de 2026, con `gemma4`: 37 avisos, ninguna falsa alarma y no se
 
 ### 4 · Las rutinas
 
-En el workspace, con Hermes funcionando y el correo conectado:
+Con Hermes funcionando, el correo conectado y `/sethome` hecho, pídeselo por Telegram:
+
+> Instala https://github.com/antoniolg/hermes-proactivo siguiendo su INSTALAR.md
+
+[`INSTALAR.md`](INSTALAR.md) son las instrucciones para el agente. Antes de pedirle a un agente que instale algo, lee lo que va a ejecutar: aquí, `setup.sh`.
+
+O hazlo tú en la consola del workspace:
 
 ```bash
 git clone https://github.com/antoniolg/hermes-proactivo
