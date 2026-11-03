@@ -73,7 +73,7 @@ El 3 de noviembre de 2026, con `gemma4`: 37 avisos, ninguna falsa alarma y no se
 En el workspace, con Hermes funcionando y el correo conectado:
 
 ```bash
-git clone https://github.com/devexpert-io/hermes-proactivo
+git clone https://github.com/antoniolg/hermes-proactivo
 cd hermes-proactivo && ./setup.sh
 ```
 
