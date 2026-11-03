@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.DS_Store
+.env
+
+# Lo que genera la evaluación en local
+eval/runs/
