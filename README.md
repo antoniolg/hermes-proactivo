@@ -70,7 +70,7 @@ El 3 de noviembre de 2026, con `gemma4`: 37 avisos, ninguna falsa alarma y no se
 
 ### 4 · Las rutinas
 
-En el workspace, con Hermes funcionando, el correo conectado y `NAN_API_KEY` en `~/.hermes/.env`:
+En el workspace, con Hermes funcionando y el correo conectado:
 
 ```bash
 git clone https://github.com/devexpert-io/hermes-proactivo
@@ -83,6 +83,8 @@ Copia los scripts y el alma a `~/.hermes` y crea dos rutinas de Hermes:
 - `reuniones`, cada día a las 18:00: un resumen de cada reunión de mañana con lo que sabe por tu correo.
 
 Para no esperar a la siguiente pasada: `hermes cron run proactivo`.
+
+El portero llama a NaN con la misma clave que usa Hermes en el workspace. Si no la encuentra, añade `NAN_API_KEY=sk-...` a `~/.hermes/.env`.
 
 ## Límites
 

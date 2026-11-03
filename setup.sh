@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Convierte el Hermes de este workspace en un asistente proactivo.
 #
-# Antes: Hermes contesta por Telegram y has mandado /sethome en ese chat (paso 1),
-# Google está conectado (paso 2) y NAN_API_KEY está en ~/.hermes/.env (paso 3).
+# Antes: Hermes contesta por Telegram, has mandado /sethome en ese chat (paso 1)
+# y Google está conectado (paso 2). El portero usa la clave de NaN de Hermes;
+# si no la encuentra, añade NAN_API_KEY a ~/.hermes/.env.
 set -euo pipefail
 cd "$(dirname "$0")"
 H="${HERMES_HOME:-$HOME/.hermes}"

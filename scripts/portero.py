@@ -9,9 +9,10 @@ línea es {"wakeAgent": false}, el agente ni se despierta.
 3. Triaje: un modelo pequeño de NaN contesta preguntas cerradas sobre cada señal.
 4. Reglas: decide el código, no el modelo.
 
-Solo usa la biblioteca estándar: corre con el Python de Hermes, sin instalar nada.
+Corre con el Python de Hermes, sin instalar nada: la biblioteca estándar y el yaml que ya trae Hermes.
 """
 
+import functools
 import json
 import os
 import subprocess
@@ -113,10 +114,35 @@ def decidir(t: dict) -> str:
 # --- El modelo -----------------------------------------------------------------------
 
 
+@functools.cache
 def nan_key() -> str:
+    """NAN_API_KEY si está; si no, la clave con la que el propio Hermes llama a NaN."""
     if key := os.environ.get("NAN_API_KEY"):
         return key
-    sys.exit("Falta NAN_API_KEY: añádela a ~/.hermes/.env")
+    for bloque in _bloques_config():
+        if "nan.builders" in str(bloque.get("base_url") or bloque.get("api") or ""):
+            if key := bloque.get("api_key") or os.environ.get(bloque.get("key_env") or ""):
+                return key
+    sys.exit("No encuentro la clave de NaN: añade NAN_API_KEY a ~/.hermes/.env")
+
+
+def _bloques_config() -> list[dict]:
+    """Todos los diccionarios de ~/.hermes/config.yaml: la URL y la clave pueden estar en varios sitios."""
+    try:
+        import yaml  # viene con Hermes
+
+        pendientes = [yaml.safe_load((HERMES / "config.yaml").read_text())]
+    except Exception:
+        return []
+    bloques = []
+    while pendientes:
+        x = pendientes.pop()
+        if isinstance(x, dict):
+            bloques.append(x)
+            pendientes.extend(x.values())
+        elif isinstance(x, list):
+            pendientes.extend(x)
+    return bloques
 
 
 def triar(senal: dict, persona: str = PERSONA, modelo: str = MODELO) -> dict:
