@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 # Convierte el Hermes de este workspace en un asistente proactivo.
 #
-# Antes: Hermes contesta por Telegram, has mandado /sethome en ese chat (paso 1)
-# y Google está conectado (paso 2). El portero usa la clave de NaN de Hermes;
-# si no la encuentra, añade NAN_API_KEY a ~/.hermes/.env.
+# Antes: Hermes contesta por Telegram, has mandado /sethome en ese chat (paso 1),
+# Google está conectado (paso 2) y ~/.hermes/.env tiene NAN_API_KEY, la clave con
+# la que el portero llama a NaN (Hermes no pasa la suya a los scripts del cron).
 set -euo pipefail
 cd "$(dirname "$0")"
 H="${HERMES_HOME:-$HOME/.hermes}"
+
+if ! grep -q '^NAN_API_KEY=.' "$H/.env" 2>/dev/null; then
+  echo "Falta NAN_API_KEY en $H/.env: es la clave con la que el portero llama a NaN." >&2
+  exit 1
+fi
 # En los workspaces de NaN, Hermes vive en /opt/hermes y no está en el PATH
 HERMES="$(command -v hermes || echo /opt/hermes/.venv/bin/hermes)"
 

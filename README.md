@@ -98,7 +98,7 @@ Copia los scripts y el alma a `~/.hermes` y crea dos rutinas de Hermes:
 
 Para no esperar a la siguiente pasada: `hermes cron run proactivo`.
 
-El portero llama a NaN con la misma clave que usa Hermes en el workspace. Si no la encuentra, añade `NAN_API_KEY=sk-...` a `~/.hermes/.env`.
+El portero llama a NaN con la clave `NAN_API_KEY` de `~/.hermes/.env`. Hermes no pasa su propia clave a los scripts del cron, así que la instalación te pide una (la sacas del panel de NaN) y la guarda ahí.
 
 ## Límites
 
