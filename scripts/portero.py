@@ -119,6 +119,9 @@ def nan_key() -> str:
     """NAN_API_KEY si está; si no, la clave con la que el propio Hermes llama a NaN."""
     if key := os.environ.get("NAN_API_KEY"):
         return key
+    # En los workspaces de NaN, Hermes recibe su clave de inferencia como OPENAI_API_KEY
+    if os.environ.get("NAN_HERMES") and (key := os.environ.get("OPENAI_API_KEY")):
+        return key
     for bloque in _bloques_config():
         if "nan.builders" in str(bloque.get("base_url") or bloque.get("api") or ""):
             if key := bloque.get("api_key") or os.environ.get(bloque.get("key_env") or ""):
