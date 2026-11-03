@@ -34,9 +34,9 @@ Cada paso tiene su tag (`git checkout paso-1`).
 
 ### 1 · El workspace
 
-En [cloud.nan.builders/workspaces](https://cloud.nan.builders/workspaces), crea un workspace y marca Hermes. En su configuración elige el modelo (`deepseek-v4-flash`), pega el token de Telegram y, como alma, el contenido de [`soul/SOUL.md`](soul/SOUL.md).
+En [cloud.nan.builders/workspaces](https://cloud.nan.builders/workspaces), crea un workspace y marca Hermes. En su configuración elige el modelo (`deepseek-v4-flash`), pega el token de Telegram, pon tu ID de Telegram (te lo da [@userinfobot](https://t.me/userinfobot)) y, como alma, el contenido de [`soul/SOUL.md`](soul/SOUL.md). No dejes vacío el ID: sin él, el bot contesta a cualquiera.
 
-Escríbele al bot y te contestará. Pero ojo: tal como viene en el workspace, Hermes arranca con `GATEWAY_ALLOW_ALL_USERS=true`, así que contesta a cualquiera que encuentre el bot, con una terminal en tu máquina detrás. Antes de darle tu correo, ciérralo a tu usuario. Se hace desde el propio chat:
+Si ya lo creaste sin el ID: tal como viene en el workspace, Hermes arranca con `GATEWAY_ALLOW_ALL_USERS=true`, así que contesta a cualquiera que encuentre el bot, con una terminal en tu máquina detrás. Antes de darle tu correo, ciérralo a tu usuario. Se hace desde el propio chat:
 
 1. Manda `/whoami`: te contesta con tu ID de Telegram.
 2. Pídeselo: «Haz que solo pueda hablarte yo: añade `TELEGRAM_ALLOWED_USERS=<tu ID>` a `~/.hermes/.env`». Si te pide permiso para tocar el archivo, apruébalo.
