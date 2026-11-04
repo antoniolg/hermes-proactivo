@@ -13,7 +13,7 @@ Calendar     pequeño      grande        ¿Se lo envío así?»
              pena
 ```
 
-Todo corre en [NaN](https://nan.builders): el agente ([Hermes](https://hermes-agent.nousresearch.com), de Nous Research) en un workspace, que es una máquina en la nube solo tuya, y los modelos en su clúster de la Unión Europea, que no guarda prompts ni respuestas.
+Todo corre en [NaN](https://cloud.nan.builders/r/067T5405): el agente ([Hermes](https://hermes-agent.nousresearch.com), de Nous Research) en un workspace, que es una máquina en la nube solo tuya, y los modelos en su clúster de la Unión Europea, que no guarda prompts ni respuestas.
 
 ## Requisitos
 
