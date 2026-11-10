@@ -23,8 +23,6 @@ Todo corre en [NaN](https://cloud.nan.builders/r/067T5405): el agente ([Hermes](
 
 ## Paso a paso
 
-Cada paso tiene su tag (`git checkout paso-1`).
-
 | Paso | Qué haces | Dónde |
 |---|---|---|
 | 1 | Crear el workspace con Hermes, conectarle Telegram y darle personalidad | [`soul/SOUL.md`](soul/SOUL.md) |
